@@ -1,11 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Exercise 3</title>
+    <style>
+        table,
+        td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
-<body>
-    <center>
-        <h1>Daftar Planet</h1>
-    </center>
+<script type="text/javascript">
+    function loadTableData(filter = '') {
+        fetch("https://swapi.co/api/planets/")
+            .then((resp) => resp.json())
+            .then(function (res) {
+                insertData(filter, res.results);
+            })
+            .catch(function (error) {
+                console.log("api ga tembus bro");
+            });
+
+    }
+    function insertData(filter, data) {
+        console.log(data);
+        var tbody = document.getElementById("isiTabel");
+
+        for (let index = 0; index < data.length; index++) {
+            const element = data[index];
+            var row = tbody.insertRow(index);
+
+            // console.log(element); 
+            let kuwo = 0;
+            for (var key in element) {
+                if (element.hasOwnProperty(key)) {
+                    var cell1 = row.insertCell(kuwo); //fibu
+                    cell1.innerHTML = element[key]; // skonto
+
+                    // console.log(key);
+                    // console.log(element[key]);
+                }
+                kuwo++;
+            }
+
+
+        }
+
+    }
+
+</script>
+
+<body onload=loadTableData()>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Rotation Period</th>
+                <th>Orbital Period</th>
+                <th>Diameter</th>
+                <th>Climate</th>
+                <th>Gravity</th>
+                <th>Terrain</th>
+                <th>Surface Water</th>
+                <th>Population</th>
+                <th>Residents</th>
+                <th>Films</th>
+                <th>Created</th>
+                <th>Edited</th>
+                <th>Url</th>
+            </tr>
+
+        </thead>
+        <tbody id="isiTabel">
+
+        </tbody>
+    </table>
 </body>
+
 </html>
