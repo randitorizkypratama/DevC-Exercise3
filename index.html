@@ -6,57 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Exercise 3</title>
-    <style>
-        table,
-        td {
-            border: 1px solid black;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+
 </head>
-<script type="text/javascript">
-    function loadTableData(filter = '') {
-        fetch("https://swapi.co/api/planets/")
-            .then((resp) => resp.json())
-            .then(function (res) {
-                insertData(filter, res.results);
-            })
-            .catch(function (error) {
-                console.log("api ga tembus bro");
-            });
-
-    }
-    function insertData(filter, data) {
-        console.log(data);
-        var tbody = document.getElementById("isiTabel");
-
-        for (let index = 0; index < data.length; index++) {
-            const element = data[index];
-            var row = tbody.insertRow(index);
-
-            // console.log(element); 
-            let kuwo = 0;
-            for (var key in element) {
-                if (element.hasOwnProperty(key)) {
-                    var cell1 = row.insertCell(kuwo); //fibu
-                    cell1.innerHTML = element[key]; // skonto
-
-                    // console.log(key);
-                    // console.log(element[key]);
-                }
-                kuwo++;
-            }
-
-
-        }
-
-    }
-
-</script>
+<script src="fungsi.js"></script>
 
 <body onload=loadTableData()>
-    <table>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+    <table id="myTable">
         <thead>
-            <tr>
+            <tr class="header">
                 <th>Name</th>
                 <th>Rotation Period</th>
                 <th>Orbital Period</th>
